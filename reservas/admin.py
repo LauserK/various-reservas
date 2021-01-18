@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.shortcuts import redirect
 from .models import Zona, Cover, Mesa, Reserva, ReservaLinea, Articulo
 
 # Register your models here.
@@ -23,6 +24,9 @@ class MesaAdmin(admin.ModelAdmin):
 class ReservaAdmin(admin.ModelAdmin):
     readonly_fields = ['codigo']
     filter_horizontal = ('articulos',)
+    
+    def response_add(self, request, obj, post_url_continue=None):        
+        return redirect('/reservas/ticket/'+obj.codigo)
 
 @admin.register(ReservaLinea)
 class ReservaLineaAdmin(admin.ModelAdmin):

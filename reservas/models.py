@@ -6,6 +6,7 @@ import datetime
 # Create your models here.
 import string
 import random
+
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
@@ -58,11 +59,12 @@ class Reserva(models.Model):
         return f'Reserva de {self.cliente.nombre}, Mesa: #{self.mesa.numero}, Zona: {self.zona.nombre}'
 
     def save(self, *args, **kwargs):      
-        code = id_generator(10)  
-        exist = Reserva.objects.filter(codigo=code)
-        
-        if len(exist) > 0:
+        if self.codigo == "" or self.codigo == None:
             code = id_generator(10)  
+            exist = Reserva.objects.filter(codigo=code)
+        
+            if len(exist) > 0:
+                code = id_generator(10)  
 
-        self.codigo = code
+            self.codigo = code
         super().save(*args, **kwargs)

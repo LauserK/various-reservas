@@ -1,0 +1,133 @@
+{% load qr_code %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">    
+    <style>
+        body{
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
+            background-color: green;
+        }
+
+        .ticket {
+            border: 1px solid black;
+            font-size: .9rem;
+            color: white;
+            background-image: url("{% static 'fondo-ticket.jpg' %}");           
+            display: inline-block;
+            padding: .5em 1em 1em 1em;
+        }
+
+        .ticket__company {
+            font-size: 1.2rem;
+        }
+
+        .ticket__line {
+            display:flex;
+            flex-direction: row;
+            margin-bottom: 1em;
+            justify-content: space-between;
+        }
+
+        .ticket_field {
+            display: flex;
+            flex-direction: column;
+            margin-right: 1.7em;
+        }
+
+        .ticket__field__title {
+            font-weight: bold;
+        }
+
+        .ticket__code__container{            
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;   
+            margin-top: 3rem;                   
+        }
+
+        .ticket__code{  
+            background-color: #fff;          
+            display: flex;
+            flex-direction:column;                                      
+            text-align: center;   
+            border-radius: 10px;      
+        }
+
+        .ticket__code__str{
+            font-family: 'Open Sans';
+            font-weight: 300;
+            font-size: 0.7em;
+            color: black;
+            margin-bottom: .5em;
+        }
+
+        .hora{
+            font-size: .8em;
+            text-align: center;
+        }
+        .no-margin-right{
+            margin-right: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="ticket" id="ticket">
+        <div class="ticket__line">
+            <div class="ticket_field">
+                <span class="ticket__field__title ticket__company">SENSE VZLA</span>                
+            </div>
+            <div class="ticket_field hora">
+                <span class="ticket__field__title">29 ENERO</span>
+                <span class="">22:00</span>
+            </div>
+        </div>
+        <div class="ticket__line">
+            <div class="ticket_field">
+                <span class="ticket__field__title ticket__name__title">Evento</span>
+                <span class="ticket__name">RED</span>
+            </div>
+        </div>
+
+        <div class="ticket__line">
+            <div class="ticket_field">
+                <span class="ticket__field__title ticket__name__title">Tipo de Ticket</span>
+                <span class="ticket__name">{{reserva.mesa.zona.nombre}}</span>
+            </div>
+
+            <div class="ticket_field no-margin-right">
+                <span class="ticket__field__title ticket__name__title">Datos del Comprador</span>
+                <span class="ticket__name">{{reserva.cliente.nombre}}</span>
+            </div>
+        </div>
+
+        <div class="ticket__line">
+            <div class="ticket_field">
+                <span class="ticket__field__title ticket__name__title">Dirección</span>
+                <span class="ticket__name">Secret location</span>
+            </div>
+        </div>
+
+        <div class="ticket__code__container">
+            <div class="ticket__code">
+                {% qr_from_text reserva.codigo size="S" %}
+                <div class="ticket__code__str">{{reserva.codigo}}</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/html2canvas.min.js' %}"></script>
+    <script>            
+        html2canvas(document.querySelector("#ticket")).then(canvas => {
+            document.body.appendChild(canvas)
+        });
+    </script>
+</body>
+</html>
