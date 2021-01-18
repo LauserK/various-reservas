@@ -25,7 +25,7 @@ class Articulo(models.Model):
     precio = models.FloatField()
 
     def __str__(self):
-        return nombre
+        return self.nombre
 
 class Mesa(models.Model):
     numero = models.IntegerField(validators = [MinValueValidator(1)])
@@ -43,7 +43,7 @@ class ReservaLinea(models.Model):
     cantidad = models.IntegerField(validators = [MinValueValidator(1)])
 
     def __str__(self):
-        return f'{self.articulo} x {cantidad}'
+        return f'{self.articulo} x {self.cantidad}'
 
 class Reserva(models.Model):
     fecha = models.DateField(auto_now_add=True)
@@ -51,12 +51,12 @@ class Reserva(models.Model):
     codigo = models.CharField(blank=True,max_length=10, unique=True)
     cliente = models.ForeignKey("clientes.Cliente", on_delete=models.CASCADE)
     mesa = models.ForeignKey("reservas.Mesa", on_delete=models.CASCADE)    
-    precio = models.FloatField(blank=True, validators = [MinValueValidator(1)])
-    zona = models.ForeignKey("reservas.Zona", on_delete=models.CASCADE)
+    precio = models.FloatField(null=True,blank=True, validators = [MinValueValidator(1)])
+    #zona = models.ForeignKey("reservas.Zona", on_delete=models.CASCADE)
     articulos = models.ManyToManyField("reservas.ReservaLinea", verbose_name="Articulos de la mesa", blank=True)
 
     def __str__(self):
-        return f'Reserva de {self.cliente.nombre}, Mesa: #{self.mesa.numero}, Zona: {self.zona.nombre}'
+        return f'Reserva de {self.cliente.nombre}, Mesa: #{self.mesa.numero}, Zona: {self.mesa.zona.nombre}'
 
     def save(self, *args, **kwargs):      
         if self.codigo == "" or self.codigo == None:
