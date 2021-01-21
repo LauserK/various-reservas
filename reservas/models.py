@@ -38,6 +38,13 @@ class Mesa(models.Model):
     def __str__(self):
         return f'{self.zona} - {self.numero}'
 
+
+class TipoReserva(models.Model):
+    nombre = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nombre
+
 class ReservaLinea(models.Model):
     articulo = models.ForeignKey("reservas.Articulo", on_delete=models.CASCADE)
     cantidad = models.IntegerField(validators = [MinValueValidator(1)])
@@ -54,6 +61,14 @@ class Reserva(models.Model):
     precio = models.FloatField(null=True,blank=True, validators = [MinValueValidator(1)])
     #zona = models.ForeignKey("reservas.Zona", on_delete=models.CASCADE)
     articulos = models.ManyToManyField("reservas.ReservaLinea", verbose_name="Articulos de la mesa", blank=True)
+    cant_covers_adicional = models.IntegerField(verbose_name="Cantidad de Covers Adicionales", default=0, validators = [MinValueValidator(0)])
+    tipo_reserva = models.ForeignKey("reservas.TipoReserva", verbose_name=("Tipo de reserva"), on_delete=models.CASCADE, null=True)
+    estados  = (
+        ('sinreclamar', 'Sin Reclamar'),
+        ('escaneado', 'Escaneado'),
+        ('reclamado', 'Reclamado'),
+	)
+    estado   = models.CharField(max_length=50, choices=estados, default="sinreclamar")
 
     def __str__(self):
         return f'Reserva de {self.cliente.nombre}, Mesa: #{self.mesa.numero}, Zona: {self.mesa.zona.nombre}'

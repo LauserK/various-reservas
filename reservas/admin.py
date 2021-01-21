@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.shortcuts import redirect
-from .models import Zona, Cover, Mesa, Reserva, ReservaLinea, Articulo
+from .models import Zona, Cover, Mesa, Reserva, ReservaLinea, Articulo, TipoReserva
 
 # Register your models here.
 
@@ -18,6 +18,10 @@ class CoverAdmin(admin.ModelAdmin):
 
 @admin.register(Mesa)
 class MesaAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(TipoReserva)
+class TipoReservaAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Reserva)
