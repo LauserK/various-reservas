@@ -28,7 +28,7 @@ class Articulo(models.Model):
         return self.nombre
 
 class Mesa(models.Model):
-    numero = models.IntegerField(validators = [MinValueValidator(1)])
+    numero = models.IntegerField(validators = [MinValueValidator(0)])
     zona = models.ForeignKey("reservas.Zona", on_delete=models.CASCADE)
     reservada = models.BooleanField(default=False)
     en_uso = models.BooleanField(default=False)
