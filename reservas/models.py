@@ -32,7 +32,7 @@ class Mesa(models.Model):
     zona = models.ForeignKey("reservas.Zona", on_delete=models.CASCADE)
     reservada = models.BooleanField(default=False)
     en_uso = models.BooleanField(default=False)
-    cant_covers = models.IntegerField(verbose_name="Cantidad de Covers", default=1, validators = [MinValueValidator(1)])
+    cant_covers = models.IntegerField(verbose_name="Cantidad de Covers", default=1, validators = [MinValueValidator(0)])
     articulos = models.ManyToManyField("reservas.ReservaLinea", verbose_name="Articulos de la mesa", blank=True)
 
     def __str__(self):
