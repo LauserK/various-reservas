@@ -27,8 +27,8 @@ class TipoReservaAdmin(admin.ModelAdmin):
 @admin.register(Reserva)
 class ReservaAdmin(admin.ModelAdmin):
     readonly_fields = ['codigo']
-    filter_horizontal = ('articulos',)
-    
+    filter_horizontal = ('articulos',)    
+
     def response_add(self, request, obj, post_url_continue=None):        
         return redirect('/reservas/ticket/'+obj.codigo)
 
