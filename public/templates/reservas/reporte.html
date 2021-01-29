@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;400;500;700&display=swap" rel="stylesheet">        
+    <style>
+        table,td,th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    
+          {% for zona in zonas %}
+          <h2>{{zona.nombre}}</h2>
+          <table>
+          <tr>
+            <th>Nombre y Apellido</th>
+            <th>Cedula</th>
+            <th>Zona</th>
+            <th>Covers</th>
+            <th>Servicios</th>
+          </tr>
+            {% for reserva in reservas %}
+            
+        
+                {% if zona.pk == reserva.mesa.zona.pk %}
+                    <tr>
+                        <td>{{reserva.cliente.nombre}}</td>
+                        <td>{{reserva.cliente.ci}}</td>
+                        <td>{{reserva.mesa.zona}}</td>
+                        <td>{{reserva.get_total}}</td>
+                        <td>{% for articulo in reserva.articulos.all %} {{articulo.cantidad}}x{{articulo.articulo.nombre}}, {% endfor %}</td>
+                    </tr>
+                
+                {% endif %}
+            
+            {% endfor %}
+            </table>
+          {% endfor %}
+    
+
+</body>
+</html>

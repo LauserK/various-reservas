@@ -27,6 +27,8 @@ class TipoReservaAdmin(admin.ModelAdmin):
 @admin.register(Reserva)
 class ReservaAdmin(admin.ModelAdmin):
     readonly_fields = ['codigo']
+    list_display = ('cliente','codigo','mesa','tipo_reserva','estado')
+    list_filter = ('mesa__zona',)
     filter_horizontal = ('articulos',)    
 
     def response_add(self, request, obj, post_url_continue=None):        

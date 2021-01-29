@@ -36,6 +36,9 @@ class Mesa(models.Model):
     articulos = models.ManyToManyField("reservas.ReservaLinea", verbose_name="Articulos de la mesa", blank=True)
 
     def __str__(self):
+
+        if self.numero == 0:
+            return f'{self.zona}'
         return f'{self.zona} - {self.numero}'
 
 
@@ -72,6 +75,9 @@ class Reserva(models.Model):
 
     def __str__(self):
         return f'Reserva de {self.cliente.nombre}, Mesa: #{self.mesa.numero}, Zona: {self.mesa.zona.nombre}'
+
+    def get_total(self):
+        return self.cant_covers_adicional + self.mesa.cant_covers
 
     def save(self, *args, **kwargs):      
         if self.codigo == "" or self.codigo == None:
