@@ -23,22 +23,20 @@
             <th>Cedula</th>
             <th>Zona</th>
             <th>Covers</th>
+            <th>Precio</th>
             <th>Servicios</th>
           </tr>
-            {% for reserva in reservas %}
-            
-        
+            {% for reserva in reservas %}                  
                 {% if zona.pk == reserva.mesa.zona.pk %}
                     <tr>
                         <td>{{reserva.cliente.nombre}}</td>
                         <td>{{reserva.cliente.ci}}</td>
                         <td>{{reserva.mesa.zona}}</td>
                         <td>{{reserva.get_total}}</td>
+                        <td>{{reserva.precio}}</td>
                         <td>{% for articulo in reserva.articulos.all %} {{articulo.cantidad}}x{{articulo.articulo.nombre}}, {% endfor %}</td>
-                    </tr>
-                
-                {% endif %}
-            
+                    </tr>                
+                {% endif %}        
             {% endfor %}
             </table>
           {% endfor %}
