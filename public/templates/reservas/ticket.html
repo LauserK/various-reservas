@@ -18,10 +18,10 @@
             border: 1px solid black;
             font-size: .9rem;
             color: white;
-            background-image: url("{% static 'fondo-ticket.jpg' %}");           
+            background-image: url("{% static 'ticket blue.jpg' %}");           
             display: inline-block;
             padding: .5em 1em 1em 1em;
-            background-size: contain;
+            background-size: cover;
         }
 
         .ticket__company {
@@ -86,14 +86,14 @@
                 <span class="ticket__field__title ticket__company">SENSE VZLA</span>                
             </div>
             <div class="ticket_field hora">
-                <span class="ticket__field__title">29 ENERO</span>
-                <span class="">22:00</span>
+                <span class="ticket__field__title">{{reserva.evento.fecha}}</span>
+                <!--<span class="">22:00</span>-->
             </div>
         </div>
         <div class="ticket__line">
             <div class="ticket_field">
                 <span class="ticket__field__title ticket__name__title">Evento</span>
-                <span class="ticket__name">RED</span>
+                <span class="ticket__name">{{reserva.evento.nombre}}</span>
             </div>
         </div>
 

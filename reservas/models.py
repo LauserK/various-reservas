@@ -10,6 +10,14 @@ import random
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
+class Evento(models.Model):
+    fecha = models.DateField(default=datetime.date.today, auto_now_add=False)
+    nombre = models.CharField(max_length=50)
+    locacion = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.fecha} - {self.nombre}"
+
 class Zona(models.Model):
     nombre = models.CharField(max_length=50)
 
@@ -56,8 +64,8 @@ class ReservaLinea(models.Model):
         return f'{self.articulo} x {self.cantidad}'
 
 class Reserva(models.Model):
-    fecha = models.DateField(auto_now_add=True)
-    fecha_evento = models.DateField(default=datetime.date.today, auto_now_add=False)
+    evento = models.ForeignKey("reservas.Evento", verbose_name=("Evento"), on_delete=models.CASCADE, null=True, blank=True)
+    fecha = models.DateField(auto_now_add=True)    
     codigo = models.CharField(blank=True,max_length=10, unique=True)
     cliente = models.ForeignKey("clientes.Cliente", on_delete=models.CASCADE)
     mesa = models.ForeignKey("reservas.Mesa", on_delete=models.CASCADE)    
