@@ -136,3 +136,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "public/static",    
 ]
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sensevenezuela.val@gmail.com'
+EMAIL_HOST_PASSWORD = 'sense.vzla'
+EMAIL_USE_TLS = True
