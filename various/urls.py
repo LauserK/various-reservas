@@ -21,4 +21,5 @@ urlpatterns = [
     path('reservas/', include('reservas.urls')),
     #API
     path('api/v1/reservas/', include('reservas.api_urls')),
+    path('api/v1/clientes/', include('clientes.api_urls')),
 ]
