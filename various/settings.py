@@ -151,6 +151,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "public/static",    
 ]
+STATIC_ROOT = '/var/www/sensevzla.com/public_html/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
