@@ -147,10 +147,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://sensevzla.com/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "public/static",    
 ]
+
 STATIC_ROOT = '/var/www/sensevzla.com/public_html/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
