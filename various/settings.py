@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'qr_code',
     'clientes',
-    'reservas'
+    'reservas',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

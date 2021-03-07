@@ -94,9 +94,10 @@ class TicketView(View):
         msg.add_header('Content-Disposition','attachment; filename="%s"' % "codigo-qr.jpg")
         msg.attach(image)
         
-        part1 = MIMEText(html_message, 'plain')
+        #part1 = MIMEText(html_message, 'plain')
         part2 = MIMEText(html_message, 'html')
         msg.attach(part2)
+        #msg.attach(part1)
 
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.ehlo()
