@@ -11,6 +11,11 @@ class Cliente(models.Model):
     host = models.CharField(max_length=20, blank=True)
     instagram = models.CharField(max_length=20, blank=True)
     verificado = models.BooleanField(default=False)
+    sexos  = (
+        ('hombre', 'Hombre'),
+        ('mujer', 'Mujer')        
+    )
+    sexo   = models.CharField(max_length=10, choices=sexos, default="mujer")
 
     def __str__(self):
         return f'{self.nombre}'
