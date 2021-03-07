@@ -17,9 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('reservas/', include('reservas.urls')),
+    path('sistema/admin/', admin.site.urls),
+    path('sistema/reservas/', include('reservas.urls')),
     #API
-    path('api/v1/reservas/', include('reservas.api_urls')),
-    path('api/v1/clientes/', include('clientes.api_urls')),
+    path('sistema/api/v1/reservas/', include('reservas.api_urls')),
+    path('sistema/api/v1/clientes/', include('clientes.api_urls')),
 ]
