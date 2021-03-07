@@ -31,7 +31,7 @@ class TipoReservaAdmin(admin.ModelAdmin):
 @admin.register(Reserva)
 class ReservaAdmin(admin.ModelAdmin):
     readonly_fields = ['codigo']
-    list_display = ('cliente__nombre','codigo','mesa','tipo_reserva','estado')
+    list_display = ('cliente','codigo','mesa','tipo_reserva','estado')
     list_filter = ('mesa__zona','evento')
     filter_horizontal = ('articulos',)    
 
