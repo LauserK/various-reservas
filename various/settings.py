@@ -27,7 +27,7 @@ SECRET_KEY = 'olr$v$$y#6mfdy(dc4$4f2dl1$@-2nhc7ggiwm1mhnu9@9kz7n'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'qr_code',
     'clientes',
     'reservas',
+<<<<<<< HEAD
     'django_extensions'
+=======
+    'corsheaders'
+>>>>>>> 0fe8f1f60f6482f6f1635539942fc58c29bca0c7
 ]
 
 MIDDLEWARE = [
@@ -51,6 +55,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -86,12 +91,25 @@ DATABASES = {
     }
 }
 """
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'variousreservas',
         'USER': 'root',
         'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
+}
+"""
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sensevzla_kildare',
+        'USER': 'root',
+        'PASSWORD': '123',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -133,10 +151,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://sensevzla.com/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "public/static",    
 ]
+
+STATIC_ROOT = '/var/www/sensevzla.com/public_html/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
