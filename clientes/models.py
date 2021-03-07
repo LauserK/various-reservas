@@ -13,4 +13,4 @@ class Cliente(models.Model):
     verificado = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.ci} - {self.nombre}'
+        return f'{self.nombre}'
