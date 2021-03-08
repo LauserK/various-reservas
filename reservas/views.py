@@ -81,6 +81,12 @@ class TicketView(View):
         qr.make(fit=True)
         img = qr.make_image(fill_color="black", back_color="white")
         BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+        if not os.path.exists(os.path.join(BASE_DIR, 'media/')):
+            try:
+                os.mkdir(os.path.join(BASE_DIR, 'media/'))
+            except:
+                pass
         
         img.save(os.path.join(BASE_DIR, 'media/'+reserva.codigo+".jpg"),'JPEG')        
 

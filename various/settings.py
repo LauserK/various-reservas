@@ -88,7 +88,6 @@ DATABASES = {
     }
 }
 """
-"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -99,18 +98,18 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-"""
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sensevzla_kildare',
-        'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+if not DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'sensevzla_kildare',
+            'USER': 'root',
+            'PASSWORD': '123',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -148,12 +147,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = 'https://sensevzla.com/static/'
+STATIC_URL = '/static/'
+
+if not DEBUG:
+    STATIC_URL = 'https://sensevzla.com/static/'
+    STATIC_ROOT = '/var/www/sensevzla.com/public_html/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR / "public/static",    
 ]
-
-STATIC_ROOT = '/var/www/sensevzla.com/public_html/static/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
