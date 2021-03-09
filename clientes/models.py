@@ -9,7 +9,7 @@ class Cliente(models.Model):
     estado = models.CharField(max_length=20, blank=True)
     ciudad = models.CharField(max_length=20, blank=True)
     host = models.CharField(max_length=20, blank=True)
-    instagram = models.CharField(max_length=20, blank=True)
+    instagram = models.CharField(max_length=40, blank=True)
     verificado = models.BooleanField(default=False)
     sexos  = (
         ('hombre', 'Hombre'),
