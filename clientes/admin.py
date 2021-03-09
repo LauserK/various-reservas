@@ -5,4 +5,4 @@ from .models import Cliente
 class ClienteAdmin(admin.ModelAdmin):
     search_fields = ('correo','nombre')
     list_display = ('nombre','ci','estado','verificado')
-    list_filter = ('verificado','estado')
+    list_filter = ('verificado','estado','host')
